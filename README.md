@@ -1,12 +1,10 @@
 # Gerenciador de Programas
 
-============
 
 Esse aplicativo tem como objetivo gerenciar programas de tv/séries/filmes. O usuário poderá cadastrar esses itens e definir um horário(não obrigatório) que a atração será exibida.
 
-============
 
-## Tarefas
+## Funcionalidades
 
 Cadastrar as atrações. 
 
