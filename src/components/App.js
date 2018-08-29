@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import Cadastro from './Cadastro';
+import Listar from './Listar';
 
 class App extends Component {
   render() {
     return (
-      <Cadastro/>
+      <div>
+        <Listar/>
+        <Cadastro/>
+      </div>
     );
   }
 }
