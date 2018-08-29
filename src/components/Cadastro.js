@@ -15,53 +15,70 @@ const KEYSTORAGE = "Atracoes";
 
 export default class Cadastro extends Component {
   state = {
-    title: "",
-    media: 'TV',
-    urlImage: "",
-    date: "",
-    time: "",
+    atracoes: {
+      title: "",
+      media: 'TV',
+      urlImage: "",
+      date: "",
+      time: "",
+    },
+    isInValid: false
   };
 
   handleName = (e) => {
     this.setState({
-      title: e.target.value
+      isInValid: false
     });
+    let atracoes = Object.assign({}, this.state.atracoes);
+    atracoes.title = e.target.value;
+    this.setState({atracoes});
   }
 
   handleMedia = (e) => {
-    this.setState({
-      media: e.target.value
-    });
+    let atracoes = Object.assign({}, this.state.atracoes);
+    atracoes.media = e.target.value;
+    this.setState({atracoes});
   }
 
   handleUrlImage = (e) => {
-    this.setState({
-      urlImage: e.target.value
-    });
+    let atracoes = Object.assign({}, this.state.atracoes);
+    atracoes.urlImage = e.target.value;
+    this.setState({atracoes});
   }
 
   handleDate = (e) => {
-    this.setState({
-      date: e.target.value
-    });
+    let atracoes = Object.assign({}, this.state.atracoes);
+    atracoes.date = e.target.value;
+    this.setState({atracoes});
   }
 
   handleTime = (e) => {
-    this.setState({
-      time: e.target.value
-    });
+    let atracoes = Object.assign({}, this.state.atracoes);
+    atracoes.time = e.target.value;
+    this.setState({atracoes});
   }
 
   saveItens = () => {
+    if(!this.validate()){
+      this.setState({
+        isInValid: true
+      })
+      return;
+    };
     if (localStorage.hasOwnProperty(KEYSTORAGE)) {
       let storage = localStorage.getItem(KEYSTORAGE);
       storage = JSON.parse(storage);
-      storage.push(this.state)
+      storage.push(this.state.atracoes)
       localStorage.setItem(KEYSTORAGE, JSON.stringify(storage));
     } else {
-      const attractions = [this.state];
+      const attractions = [this.state.atracoes];
       localStorage.setItem(KEYSTORAGE, JSON.stringify(attractions));
     }
+  }
+
+  validate = () => {
+    const { title } = this.state.atracoes;
+    return (title.trim().length < 3) ? false : true;
   }
 
   cancelForm = () => {
@@ -75,6 +92,7 @@ export default class Cadastro extends Component {
   }
 
   render() {
+    const { isInValid } = this.state;
     return (
       <Container>
         <Form>
@@ -82,7 +100,14 @@ export default class Cadastro extends Component {
             <Col xs="10">
               <FormGroup>
                 <Label for="title">Nome</Label>
-                <Input name="title" id="title" value={this.state.title} placeholder="Nome da atração" onChange={this.handleName}/>
+                <Input name="title" id="title" value={this.state.atracoes.title} placeholder="Nome da atração" onChange={this.handleName}/>
+                {
+                isInValid ? 
+                  <FormText className="text-danger" color="text-danger">
+                    Informe um nome para a atração, com mais de 3 caracteres
+                  </FormText> 
+                : null
+              }
               </FormGroup>
             </Col>
             <Col xs="2">
