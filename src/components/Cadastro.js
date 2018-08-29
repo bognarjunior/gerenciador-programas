@@ -11,6 +11,7 @@ import {
   FormText
 } from 'reactstrap';
 
+const KEYSTORAGE = "Atracoes";
 
 export default class Cadastro extends Component {
   state = {
@@ -52,7 +53,15 @@ export default class Cadastro extends Component {
   }
 
   saveItens = () => {
-    console.log(this.state)
+    if (localStorage.hasOwnProperty(KEYSTORAGE)) {
+      let storage = localStorage.getItem(KEYSTORAGE);
+      storage = JSON.parse(storage);
+      storage.push(this.state)
+      localStorage.setItem(KEYSTORAGE, JSON.stringify(storage));
+    } else {
+      const attractions = [this.state];
+      localStorage.setItem(KEYSTORAGE, JSON.stringify(attractions));
+    }
   }
 
   cancelForm = () => {
@@ -114,8 +123,8 @@ export default class Cadastro extends Component {
           </Row>
           <Row>
             <Col className="d-flex justify-content-around">
-              <Button outline color="primary" onClick={this.saveItens}>Salvar</Button>
-              <Button outline color="danger" onClick={this.cancelForm}>Cancelar</Button>
+              <Button color="primary" onClick={this.saveItens}>Salvar</Button>
+              <Button color="danger" onClick={this.cancelForm}>Cancelar</Button>
             </Col>
           </Row>
         </Form>
