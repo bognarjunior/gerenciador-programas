@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Col } from 'reactstrap';
 
-import noImage from '../assets/noImage.png';
-
 export default class componentName extends Component {
   constructor(props) {
     super(props)
@@ -33,7 +31,7 @@ export default class componentName extends Component {
 
   onErrorImage = () => {
     this.setState({
-      urlImage: noImage
+      urlImage: require('/assets/noImage.png')
     })
   }
   
