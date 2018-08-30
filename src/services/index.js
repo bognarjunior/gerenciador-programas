@@ -1,14 +1,15 @@
 import { KEYSTORAGE } from './../constants';
+import { formatData, concatStringToDate } from './../utils';
 
 export const getList = () => {
   let storage = localStorage.getItem(KEYSTORAGE);
   storage = JSON.parse(storage);
 
   storage.forEach( i => {
-    let str  = ((i.date + ' ' + i.time) === ' ') ? "1970-01-01 00:00:00" : (i.date + ' ' + i.time) ;
+    let str  = concatStringToDate(i.date,  i.time)
     const date =  new Date(str);
     i.datetime = date.getTime();
-    i.dateFormated = (str === "1970-01-01 00:00:00") ? 'Sem data definida' : date.toLocaleString();
+    i.dateFormated = formatData(str, date);
   })
 
   storage.sort(function(a, b){
