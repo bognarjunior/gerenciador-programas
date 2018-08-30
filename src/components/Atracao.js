@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Col } from 'reactstrap';
 
-import noImage from './../assets/noImage.png';
+import noImage from '../assets/noImage.png';
 
 export default class componentName extends Component {
   constructor(props) {
