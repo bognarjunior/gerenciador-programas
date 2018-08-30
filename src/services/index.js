@@ -5,6 +5,9 @@ export const getList = () => {
   let storage = localStorage.getItem(KEYSTORAGE);
   storage = JSON.parse(storage);
 
+  if (!localStorage.hasOwnProperty(KEYSTORAGE)) {
+    return [];
+  }
   storage.forEach( i => {
     let str  = concatStringToDate(i.date,  i.time)
     const date =  new Date(str);
@@ -16,7 +19,7 @@ export const getList = () => {
     return new Date(a.datetime) - new Date(b.datetime);
   });
 
-  return storage || [];
+  return storage;
 }
 
 export const setList = (data) => {
