@@ -17,4 +17,4 @@ Ordenar de acordo com a data de exibição, as mais próximas do horário atual 
 <p>Fazer o download do cógigo ou clonar o repositório.
 <p>Navegar até a pasta do repositório e digitar 
 <p>npm install
-
+<p>Após instalado digitar npm run start
