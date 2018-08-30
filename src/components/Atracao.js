@@ -31,7 +31,7 @@ export default class componentName extends Component {
 
   onErrorImage = () => {
     this.setState({
-      urlImage: require('/assets/noImage.png')
+      urlImage: '%PUBLIC_URL%/assets/noImage.png'
     })
   }
   
