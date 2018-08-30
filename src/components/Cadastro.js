@@ -11,7 +11,7 @@ import {
   FormText
 } from 'reactstrap';
 
-const KEYSTORAGE = "Atracoes";
+import { setList } from'./../services';
 
 export default class Cadastro extends Component {
   state = {
@@ -65,15 +65,8 @@ export default class Cadastro extends Component {
       })
       return;
     };
-    if (localStorage.hasOwnProperty(KEYSTORAGE)) {
-      let storage = localStorage.getItem(KEYSTORAGE);
-      storage = JSON.parse(storage);
-      storage.push(this.state.atracoes)
-      localStorage.setItem(KEYSTORAGE, JSON.stringify(storage));
-    } else {
-      const attractions = [this.state.atracoes];
-      localStorage.setItem(KEYSTORAGE, JSON.stringify(attractions));
-    }
+    setList(this.state.atracoes);
+    this.props.history.push("/");
   }
 
   validate = () => {
@@ -89,6 +82,7 @@ export default class Cadastro extends Component {
       date: "",
       time: "",
     });
+    this.props.history.push("/");
   }
 
   render() {
@@ -118,6 +112,7 @@ export default class Cadastro extends Component {
                   <option>Cinema</option>
                   <option>Netflix</option>
                   <option>Teatro</option>
+                  <option>Internet</option>
                   <option>Outro...</option>
                 </Input>
               </FormGroup>

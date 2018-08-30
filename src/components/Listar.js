@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Alert, Row, Col } from 'reactstrap';
+
+import { getList } from'./../services';
+
 import Atracao from './Atracao';
 
-const KEYSTORAGE = "Atracoes";
 export default class Listar extends Component {
   
   state = {
@@ -11,14 +13,12 @@ export default class Listar extends Component {
   }
 
   componentDidMount() {
-    this.getList();
+    this.getListStore();
   }
 
-  getList = () => {
-    let storage = localStorage.getItem(KEYSTORAGE);
-    storage = JSON.parse(storage);
+  getListStore = () => {
     this.setState({
-      listaAtracoes: storage || [],
+      listaAtracoes: getList(),
       isLoad: true
     })
   }
@@ -34,9 +34,10 @@ export default class Listar extends Component {
         </Col>
       )
     }
+
     return listaAtracoes.map(item => {
       return (
-        <Atracao item={item}/>
+        <Atracao item={item} key={item.title}/>
       )
     });
   }
