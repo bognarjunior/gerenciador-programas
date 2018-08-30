@@ -12,3 +12,9 @@ Nome da atração, a mídia na qual passará e o horário que será exibido
 
 Ordenar de acordo com a data de exibição, as mais próximas do horário atual primeiro.
 
+## Como installar 
+
+<p>Fazer o download do cógigo ou clonar o repositório.
+<p>Navegar até a pasta do repositório e digitar 
+<p>npm install
+
